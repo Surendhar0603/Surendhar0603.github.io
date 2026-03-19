@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Software Developer — Healthcare IT & LIS Integration</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ========== PRELOADER ========== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <span class="pre-text">Initializing</span>
+      <div class="pre-bar"><div class="pre-fill" id="preFill"></div></div>
+    </div>
+  </div>
+
+  <!-- ========== CUSTOM CURSOR ========== -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-outline" id="cursorOutline"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <!-- <span class="logo-bracket">&lt;</span>Surendhar D<span class="logo-bracket">/&gt;</span> -->
+         Surendhar D
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#expertise" class="nav-link">Expertise</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link nav-cta">Hire Me</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-blob blob-3"></div>
+      <!-- Floating particles -->
+      <div class="particles" id="particles"></div>
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-badge" data-aos="fade-down">
+          <span class="badge-dot"></span>
+          Open to New Opportunities
+        </div>
+
+        <h1 class="hero-name" data-aos="fade-up" data-aos-delay="100">
+          <span class="name-line">Software</span>
+          <span class="name-line accent-line">Developer</span>
+        </h1>
+
+        <div class="hero-tagline" data-aos="fade-up" data-aos-delay="200">
+          <span class="tagline-text" id="typeTarget"></span>
+          <span class="cursor-blink">|</span>
+        </div>
+
+        <p class="hero-desc" data-aos="fade-up" data-aos-delay="300">
+          Healthcare IT specialist with <strong>1.9 years</strong> of hands-on experience in Laboratory Information Systems. Building real-time interfaces that process <strong>5,000+ patient results daily</strong> — where precision is life-critical.
+        </p>
+
+        <div class="hero-pills" data-aos="fade-up" data-aos-delay="400">
+          <span class="pill">SQL Server</span>
+          <span class="pill">C# .NET</span>
+          <span class="pill">HL7 / ASTM</span>
+          <span class="pill">LIS Integration</span>
+        </div>
+
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
+          <a href="#contact" class="btn btn-primary">
+            <span>Let's Connect</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#experience" class="btn btn-outline">View Experience</a>
+        </div>
+      </div>
+
+      <div class="hero-right" data-aos="fade-left" data-aos-delay="300">
+        <div class="hero-card-wrap">
+          <div class="hero-profile-card">
+            <div class="profile-avatar">
+              <div class="avatar-ring"></div>
+              <!-- <div class="avatar-inner">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <circle cx="32" cy="24" r="14" fill="#1a3a5c" opacity="0.15"/>
+                  <ellipse cx="32" cy="54" rx="22" ry="12" fill="#1a3a5c" opacity="0.1"/>
+                  <circle cx="32" cy="23" r="13" fill="#1a3a5c" opacity="0.25"/>
+                  <ellipse cx="32" cy="53" rx="21" ry="11" fill="#1a3a5c" opacity="0.2"/>
+                </svg>
+              </div> -->
+                <div class="avatar-inner">
+                    <img src="Profile.png" alt="Profile Photo" />
+                </div>
+            </div>
+            <div class="profile-info">
+              <h3 class="profile-name">Software Developer</h3>
+              <p class="profile-company">Bot Bridge Technologies Pvt Ltd</p>
+              <span class="profile-badge">🏥 Healthcare IT</span>
+            </div>
+            <div class="profile-stats-row">
+              <div class="pstat">
+                <span class="pstat-num">1.9<small>yrs</small></span>
+                <span class="pstat-label">Experience</span>
+              </div>
+              <div class="pstat-divider"></div>
+              <div class="pstat">
+                <span class="pstat-num">5K<small>+</small></span>
+                <span class="pstat-label">Results/Day</span>
+              </div>
+              <div class="pstat-divider"></div>
+              <div class="pstat">
+                <span class="pstat-num">3<small>+</small></span>
+                <span class="pstat-label">DB Platforms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating mini cards -->
+          <!-- <div class="float-card float-card-1">
+            <span class="float-icon">🗄️</span>
+            <div>
+              <div class="float-title">SQL Expert</div>
+              <div class="float-sub">Query Optimization</div>
+            </div>
+          </div>
+          <div class="float-card float-card-2">
+            <span class="float-icon">🔬</span>
+            <div>
+              <div class="float-title">HL7 / ASTM</div>
+              <div class="float-sub">Protocol Integration</div>
+            </div>
+          </div>
+          <div class="float-card float-card-3">
+            <span class="float-icon">⚙️</span>
+            <div>
+              <div class="float-title">C# .NET</div>
+              <div class="float-sub">Interface Builder</div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ========== TICKER ========== -->
+  <div class="ticker-section">
+    <div class="ticker-track">
+      <div class="ticker-inner" id="tickerInner">
+        <span>SQL Server</span><span class="sep">✦</span>
+        <span>C# .NET Framework</span><span class="sep">✦</span>
+        <span>HL7 / ASTM Protocol</span><span class="sep">✦</span>
+        <span>LIS Integration</span><span class="sep">✦</span>
+        <span>DevExpress Reporting</span><span class="sep">✦</span>
+        <span>SSMS & SQL Profiler</span><span class="sep">✦</span>
+        <span>T-SQL Optimization</span><span class="sep">✦</span>
+        <span>Oracle & PostgreSQL</span><span class="sep">✦</span>
+        <span>Healthcare IT</span><span class="sep">✦</span>
+        <span>Production Troubleshooting</span><span class="sep">✦</span>
+        <!-- duplicate -->
+        <span>SQL Server</span><span class="sep">✦</span>
+        <span>C# .NET Framework</span><span class="sep">✦</span>
+        <span>HL7 / ASTM Protocol</span><span class="sep">✦</span>
+        <span>LIS Integration</span><span class="sep">✦</span>
+        <span>DevExpress Reporting</span><span class="sep">✦</span>
+        <span>SSMS & SQL Profiler</span><span class="sep">✦</span>
+        <span>T-SQL Optimization</span><span class="sep">✦</span>
+        <span>Oracle & PostgreSQL</span><span class="sep">✦</span>
+        <span>Healthcare IT</span><span class="sep">✦</span>
+        <span>Production Troubleshooting</span><span class="sep">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left" data-aos="fade-right">
+          <div class="section-tag">Who I Am</div>
+          <h2 class="section-title">Building the <em>Backbone</em> of Healthcare Data</h2>
+          <p class="about-para">
+            I'm a Software Developer at <strong>Bot Bridge Technologies Pvt Ltd</strong>, working at the critical intersection of healthcare technology and data engineering. My daily mission: keeping hospital laboratory systems accurate, fast, and always running.
+          </p>
+          <p class="about-para">
+            With expertise in <strong>SQL Server, C#, and .NET Framework</strong>, I build and maintain real-time LIS interfaces — the invisible infrastructure that ensures a patient's test result reaches the right doctor at the right time.
+          </p>
+          <p class="about-para">
+            I'm actively seeking opportunities in <strong>Healthcare IT development, LIS/HIS implementation,</strong> or <strong>Database development</strong> roles where technical precision meets real-world impact.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <span class="hi-icon">🏥</span>
+              <span>Healthcare IT Specialist</span>
+            </div>
+            <div class="highlight-item">
+              <span class="hi-icon">⚡</span>
+              <span>Real-time System Builder</span>
+            </div>
+            <div class="highlight-item">
+              <span class="hi-icon">🔒</span>
+              <span>Production-Grade Reliability</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right" data-aos="fade-left" data-aos-delay="150">
+          <div class="about-stats-card">
+            <h3 class="stats-card-title">At a Glance</h3>
+            <div class="stats-list">
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>📅</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Experience</div>
+                  <div class="stat-value">1 Year 9 Months</div>
+                </div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>🏢</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Current Company</div>
+                  <div class="stat-value">Bot Bridge Technologies Pvt Ltd</div>
+                </div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>📊</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Daily Patient Results</div>
+                  <div class="stat-value">5,000+ Processed</div>
+                </div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>🗄️</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Database Platforms</div>
+                  <div class="stat-value">SQL Server · Oracle · PostgreSQL</div>
+                </div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>🌐</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Protocols</div>
+                  <div class="stat-value">HL7 · ASTM</div>
+                </div>
+              </div>
+              <div class="stat-row">
+                <div class="stat-icon-wrap"><span>✅</span></div>
+                <div class="stat-content">
+                  <div class="stat-label">Status</div>
+                  <div class="stat-value available">Available for Opportunities</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERTISE / WHAT I DO ========== -->
+  <section class="expertise section" id="expertise">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-tag">Core Services</div>
+        <h2 class="section-title">What I Bring to the Table</h2>
+        <p class="section-sub">Every system I build is designed with zero tolerance for failure — because in healthcare, accuracy saves lives.</p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="exp-card-num">01</div>
+          <div class="exp-card-icon">🗄️</div>
+          <h3 class="exp-card-title">Database Development & Optimization</h3>
+          <p class="exp-card-desc">Optimizing SQL queries, troubleshooting production databases using SSMS and SQL Profiler, ensuring high-performance data flow across SQL Server, Oracle, and PostgreSQL environments.</p>
+          <div class="exp-card-tags">
+            <span>SQL Server</span><span>T-SQL</span><span>SQL Profiler</span><span>SSMS</span>
+          </div>
+        </div>
+
+        <div class="exp-card featured" data-aos="fade-up" data-aos-delay="100">
+          <div class="exp-card-num">02</div>
+          <div class="exp-card-icon">🏥</div>
+          <h3 class="exp-card-title">LIS Interface Development</h3>
+          <p class="exp-card-desc">Building and maintaining real-time Laboratory Information System interfaces using C# and .NET Framework. Processing 5,000+ patient results daily with zero-error tolerance.</p>
+          <div class="exp-card-tags">
+            <span>C#</span><span>.NET Framework</span><span>LIS</span><span>Real-Time</span>
+          </div>
+        </div>
+
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="exp-card-num">03</div>
+          <div class="exp-card-icon">🔬</div>
+          <h3 class="exp-card-title">HL7 / ASTM Integration</h3>
+          <p class="exp-card-desc">Implementing industry-standard HL7 and ASTM protocol integrations for clinical analyzer connectivity — enabling seamless bidirectional data exchange between lab instruments and hospital systems.</p>
+          <div class="exp-card-tags">
+            <span>HL7</span><span>ASTM</span><span>Healthcare</span><span>Analyzers</span>
+          </div>
+        </div>
+
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="exp-card-num">04</div>
+          <div class="exp-card-icon">📊</div>
+          <h3 class="exp-card-title">Custom Report Development</h3>
+          <p class="exp-card-desc">Designing clinical and operational reports using DevExpress Reporting Tool, transforming complex laboratory data into clear, print-ready documents for clinical decision-making.</p>
+          <div class="exp-card-tags">
+            <span>DevExpress</span><span>Reports</span><span>Data Viz</span>
+          </div>
+        </div>
+
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="exp-card-num">05</div>
+          <div class="exp-card-icon">🛠️</div>
+          <h3 class="exp-card-title">Production Support & Troubleshooting</h3>
+          <p class="exp-card-desc">Rapid diagnosis and resolution of production issues in live hospital environments. Minimizing downtime where every minute of system unavailability has direct patient care implications.</p>
+          <div class="exp-card-tags">
+            <span>Debugging</span><span>Production</span><span>Critical Systems</span>
+          </div>
+        </div>
+
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="exp-card-num">06</div>
+          <div class="exp-card-icon">⚡</div>
+          <h3 class="exp-card-title">Performance Tuning</h3>
+          <p class="exp-card-desc">Identifying and resolving query bottlenecks using SQL Profiler, optimizing execution plans, and ensuring database performance scales with hospital workload demands.</p>
+          <div class="exp-card-tags">
+            <span>Query Tuning</span><span>Indexing</span><span>Execution Plans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERIENCE ========== -->
+  <section class="experience section" id="experience">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-tag">Career</div>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tc-header">
+              <div>
+                <div class="tc-period">Oct 2025 – Present · 6 Months</div>
+                <h3 class="tc-role">Software Developer — Development Support</h3>
+                <div class="tc-company">
+                  <span class="company-icon">🏢</span>
+                  Bot Bridge Technologies Pvt Ltd · Full-time
+                </div>
+              </div>
+              <div class="tc-badge">Current</div>
+            </div>
+            <div class="tc-body">
+              <ul class="tc-list">
+                <li>Development and maintenance support for LIS applications using SQL Server and .NET Framework</li>
+                <li>Performance tuning with SQL Profiler — identifying bottlenecks and optimizing slow-running queries</li>
+                <li>Custom report development using DevExpress Reporting Tool for clinical and operational use</li>
+                <li>Production troubleshooting across SQL Server, Oracle, and PostgreSQL environments</li>
+              </ul>
+            </div>
+            <div class="tc-skills">
+              <span>Microsoft SQL Server</span>
+              <span>.NET Framework</span>
+              <span>DevExpress Reporting</span>
+              <span>SSMS</span>
+              <span>SQL Profiler</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="150">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="tc-header">
+              <div>
+                <div class="tc-period">Jul 2024 – Present · 1 Year 9 Months</div>
+                <h3 class="tc-role">Interface Developer</h3>
+                <div class="tc-company">
+                  <span class="company-icon">🏢</span>
+                  Bot Bridge Technologies Pvt Ltd · Full-time
+                </div>
+              </div>
+            </div>
+            <div class="tc-body">
+              <ul class="tc-list">
+                <li>Built and maintained real-time LIS interfaces using C# and .NET Framework processing 5,000+ patient results daily</li>
+                <li>HL7 / ASTM protocol integration for clinical analyzer connectivity across hospital laboratory systems</li>
+                <li>Ensured seamless bidirectional data flow between laboratory instruments and hospital information systems</li>
+                <li>Collaborated with clinical teams to validate interface accuracy and data integrity</li>
+              </ul>
+            </div>
+            <div class="tc-skills">
+              <span>C#</span>
+              <span>Microsoft SQL Server</span>
+              <span>.NET Framework</span>
+              <span>HL7 / ASTM</span>
+              <span>SSMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS ========== -->
+  <section class="skills section" id="skills">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-tag">Technical Stack</div>
+        <h2 class="section-title">Skills & Technologies</h2>
+        <p class="section-sub">Tools and technologies I work with daily to deliver healthcare-grade software.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="0">
+          <div class="sc-header">
+            <span class="sc-icon">🗄️</span>
+            <h3 class="sc-title">Databases</h3>
+          </div>
+          <div class="sc-tags">
+            <span class="sc-tag primary">SQL Server</span>
+            <span class="sc-tag primary">SSMS</span>
+            <span class="sc-tag primary">SQL Profiler</span>
+            <span class="sc-tag primary">T-SQL</span>
+            <span class="sc-tag">Oracle</span>
+            <span class="sc-tag">PostgreSQL</span>
+            <span class="sc-tag">Query Optimization</span>
+            <span class="sc-tag">Execution Plans</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+          <div class="sc-header">
+            <span class="sc-icon">💻</span>
+            <h3 class="sc-title">Development</h3>
+          </div>
+          <div class="sc-tags">
+            <span class="sc-tag primary">C#</span>
+            <span class="sc-tag primary">.NET Framework</span>
+            <span class="sc-tag">Core Java</span>
+            <span class="sc-tag">HTML</span>
+            <span class="sc-tag">CSS</span>
+            <span class="sc-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+          <div class="sc-header">
+            <span class="sc-icon">🏥</span>
+            <h3 class="sc-title">Healthcare & Integration</h3>
+          </div>
+          <div class="sc-tags">
+            <span class="sc-tag primary">HL7 Protocol</span>
+            <span class="sc-tag primary">ASTM Protocol</span>
+            <span class="sc-tag primary">LIS Integration</span>
+            <span class="sc-tag">HIS Systems</span>
+            <span class="sc-tag">Clinical Analyzers</span>
+            <span class="sc-tag">Data Exchange</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+          <div class="sc-header">
+            <span class="sc-icon">🛠️</span>
+            <h3 class="sc-title">Tools & Reporting</h3>
+          </div>
+          <div class="sc-tags">
+            <span class="sc-tag primary">DevExpress Reporting</span>
+            <span class="sc-tag">Manual Testing</span>
+            <span class="sc-tag">Performance Tuning</span>
+            <span class="sc-tag">Production Debug</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EDUCATION ========== -->
+  <section class="education section" id="education">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-tag">Education</div>
+        <h2 class="section-title">Academic Background</h2>
+      </div>
+
+      <div class="edu-card-wrap" data-aos="fade-up" data-aos-delay="100">
+        <div class="edu-card">
+          <div class="edu-left">
+            <div class="edu-icon-wrap">🎓</div>
+            <div class="edu-line"></div>
+          </div>
+          <div class="edu-right">
+            <div class="edu-period">Jun 2023 – Apr 2024</div>
+            <h3 class="edu-degree">Software Testing & Development</h3>
+            <div class="edu-institute">QSpiders – Software Testing Training Institute</div>
+            <p class="edu-desc">Comprehensive training in software testing methodologies, database fundamentals, and web development foundations. Built strong ground-level skills in Java, SQL, and frontend technologies.</p>
+            <div class="edu-skills">
+              <span>SQL</span>
+              <span>Core Java</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Manual Testing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-left" data-aos="fade-right">
+          <div class="section-tag">Get In Touch</div>
+          <h2 class="section-title contact-title">
+            Let's Build Something<br><em>Impactful Together</em>
+          </h2>
+          <p class="contact-desc">
+            I'm actively looking for opportunities in Healthcare IT, LIS/HIS implementation, or Database development. If you're hiring or just want to connect — my inbox is always open.
+          </p>
+          <div class="contact-info-list">
+            <a href="mailto:your@email.com" class="contact-info-item">
+              <div class="ci-icon">📧</div>
+              <div>
+                <div class="ci-label">Email</div>
+                <div class="ci-value">surendhardatta@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/surendhardatta06" target="_blank" class="contact-info-item">
+              <div class="ci-icon">💼</div>
+              <div>
+                <div class="ci-label">LinkedIn</div>
+                <div class="ci-value">linkedin.com/in/surendhardatta06</div>
+              </div>
+            </a>
+            <div class="contact-info-item">
+              <div class="ci-icon">📍</div>
+              <div>
+                <div class="ci-label">Location</div>
+                <div class="ci-value">Chennai - Bangalore</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right" data-aos="fade-left" data-aos-delay="150">
+          <div class="contact-card">
+            <h3 class="contact-card-title">Send a Whatsapp Message</h3>
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="John Smith" id="formName"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="john@company.com" id="formEmail"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <input type="text" class="form-input" placeholder="Job Opportunity / Collaboration" id="formSubject"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-input form-textarea" placeholder="Tell me about the opportunity..." id="formMessage"></textarea>
+            </div>
+            <button class="btn btn-primary btn-full" id="sendBtn">
+              <span>Send On Whatsapp</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <!-- <span class="logo-bracket">&lt;</span>Surendhar D<span class="logo-bracket">/&gt;</span> -->
+           Surendhar D
+        </div>
+        <p class="footer-copy">© 2026 Software Developer · Healthcare IT & LIS Integration Specialist</p>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
