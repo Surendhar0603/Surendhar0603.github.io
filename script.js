@@ -1,8 +1,3 @@
-/* ============================================
-   PORTFOLIO — script.js
-   All interactions, animations & effects
-   ============================================ */
-
 "use strict";
 
 /* ============ PRELOADER ============ */
@@ -230,48 +225,9 @@ function initHeroAnimations() {
   ticker.addEventListener("mouseleave", () => ticker.style.animationPlayState = "running");
 })();
 
-/* ============ CONTACT FORM ============ */
-// (function initContactForm() {
-//   const sendBtn = document.getElementById("sendBtn");
-//   if (!sendBtn) return;
-
-//   sendBtn.addEventListener("click", () => {
-//     const name = document.getElementById("formName")?.value.trim();
-//     const email = document.getElementById("formEmail")?.value.trim();
-//     const subject = document.getElementById("formSubject")?.value.trim();
-//     const message = document.getElementById("formMessage")?.value.trim();
-
-//     if (!name || !email || !subject || !message) {
-//       showToast("Please fill in all fields.", "error");
-//       return;
-//     }
-//     if (!isValidEmail(email)) {
-//       showToast("Please enter a valid email address.", "error");
-//       return;
-//     }
-
-//     // Simulate sending
-//     sendBtn.disabled = true;
-//     sendBtn.querySelector("span").textContent = "Sending...";
-
-//     setTimeout(() => {
-//       sendBtn.disabled = false;
-//       sendBtn.querySelector("span").textContent = "Send Message";
-//       showToast("Message sent! I'll get back to you soon. ✅", "success");
-//       ["formName", "formEmail", "formSubject", "formMessage"].forEach((id) => {
-//         const el = document.getElementById(id);
-//         if (el) el.value = "";
-//       });
-//     }, 1600);
-//   });
-
-//   function isValidEmail(e) {
-//     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-//   }
-// })();
 sendBtn.addEventListener("click", () => {
-  const name    = document.getElementById("formName")?.value.trim();
-  const email   = document.getElementById("formEmail")?.value.trim();
+  const name = document.getElementById("formName")?.value.trim();
+  const email = document.getElementById("formEmail")?.value.trim();
   const subject = document.getElementById("formSubject")?.value.trim();
   const message = document.getElementById("formMessage")?.value.trim();
 
@@ -283,10 +239,10 @@ sendBtn.addEventListener("click", () => {
   const phone = "918940786858"; // 🔁 Replace with your number (91 = India code)
 
   const text = `Hello Surendhar D,%0A%0A` +
-               `*Name:* ${name}%0A` +
-               `*Email:* ${email}%0A` +
-               `*Subject:* ${subject}%0A%0A` +
-               `*Message:*%0A${message}`;
+    `*Name:* ${name}%0A` +
+    `*Email:* ${email}%0A` +
+    `*Subject:* ${subject}%0A%0A` +
+    `*Message:*%0A${message}`;
 
   window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
 
