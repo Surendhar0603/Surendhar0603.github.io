@@ -270,7 +270,7 @@ function showToast(msg, type = "success") {
     z-index: 9999;
     padding: 1rem 1.8rem;
     border-radius: 10px;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
     color: #fff;
