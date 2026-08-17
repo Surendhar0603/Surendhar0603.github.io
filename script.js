@@ -8,77 +8,90 @@
 
   let progress = 0;
   const interval = setInterval(() => {
-    progress += Math.random() * 18 + 5;
+    progress += Math.random() * 20 + 8;
     if (progress >= 100) {
       progress = 100;
       clearInterval(interval);
       setTimeout(() => {
         preloader.classList.add("hidden");
         document.body.style.overflow = "";
-        // Trigger hero animations after preloader
         initHeroAnimations();
-      }, 400);
+      }, 350);
     }
     fill.style.width = progress + "%";
-  }, 80);
+  }, 60);
 
   document.body.style.overflow = "hidden";
 })();
 
 /* ============ CUSTOM CURSOR ============ */
 (function initCursor() {
+  const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!isFinePointer) return;
+
   const dot = document.getElementById("cursorDot");
   const outline = document.getElementById("cursorOutline");
   if (!dot || !outline) return;
 
-  let mouseX = 0, mouseY = 0;
-  let outlineX = 0, outlineY = 0;
-  let rafId;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let outlineX = mouseX;
+  let outlineY = mouseY;
+  let isVisible = false;
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    if (!isVisible) {
+      isVisible = true;
+      dot.style.opacity = "1";
+      outline.style.opacity = "1";
+    }
+    
     dot.style.left = mouseX + "px";
     dot.style.top = mouseY + "px";
   });
 
   function animateOutline() {
-    outlineX += (mouseX - outlineX) * 0.13;
-    outlineY += (mouseY - outlineY) * 0.13;
+    outlineX += (mouseX - outlineX) * 0.15;
+    outlineY += (mouseY - outlineY) * 0.15;
     outline.style.left = outlineX + "px";
     outline.style.top = outlineY + "px";
-    rafId = requestAnimationFrame(animateOutline);
+    requestAnimationFrame(animateOutline);
   }
-  animateOutline();
+  requestAnimationFrame(animateOutline);
 
-  // Hide cursor when leaving window
   document.addEventListener("mouseleave", () => {
     dot.style.opacity = "0";
     outline.style.opacity = "0";
+    isVisible = false;
   });
+
   document.addEventListener("mouseenter", () => {
     dot.style.opacity = "1";
-    outline.style.opacity = "0.5";
+    outline.style.opacity = "1";
+    isVisible = true;
   });
 })();
 
-/* ============ PARTICLES ============ */
+/* ============ HERO PARTICLES ============ */
 (function initParticles() {
   const container = document.getElementById("particles");
   if (!container) return;
 
-  const count = 20;
+  const count = 18;
   for (let i = 0; i < count; i++) {
     const p = document.createElement("div");
     p.className = "particle";
-    const size = Math.random() * 4 + 2;
+    const size = Math.random() * 3.5 + 2;
     p.style.cssText = `
       width: ${size}px;
       height: ${size}px;
       left: ${Math.random() * 100}%;
       top: ${Math.random() * 100}%;
-      --dur: ${Math.random() * 6 + 4}s;
-      --delay: ${Math.random() * 6}s;
+      --dur: ${Math.random() * 6 + 5}s;
+      --delay: ${Math.random() * 5}s;
     `;
     container.appendChild(p);
   }
@@ -100,22 +113,22 @@ function initHeroAnimations() {
   let phraseIdx = 0;
   let charIdx = 0;
   let isDeleting = false;
-  let delay = 120;
+  let delay = 110;
 
   function type() {
     const current = phrases[phraseIdx];
     if (isDeleting) {
       target.textContent = current.substring(0, charIdx - 1);
       charIdx--;
-      delay = 60;
+      delay = 50;
     } else {
       target.textContent = current.substring(0, charIdx + 1);
       charIdx++;
-      delay = 110;
+      delay = 95;
     }
 
     if (!isDeleting && charIdx === current.length) {
-      delay = 2200;
+      delay = 2400;
       isDeleting = true;
     } else if (isDeleting && charIdx === 0) {
       isDeleting = false;
@@ -128,7 +141,7 @@ function initHeroAnimations() {
   type();
 }
 
-/* ============ NAVBAR ============ */
+/* ============ NAVBAR & MOBILE MENU ============ */
 (function initNavbar() {
   const navbar = document.getElementById("navbar");
   const toggle = document.getElementById("navToggle");
@@ -136,29 +149,49 @@ function initHeroAnimations() {
 
   // Scroll: add .scrolled class
   window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 30);
+    if (navbar) {
+      navbar.classList.toggle("scrolled", window.scrollY > 30);
+    }
     highlightNavLink();
   }, { passive: true });
 
   // Mobile toggle
   if (toggle && menu) {
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("open");
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle("open");
+      toggle.classList.toggle("active", isOpen);
     });
-    // Close on link click
+
+    // Close when clicking nav links
     menu.querySelectorAll(".nav-link").forEach((link) => {
-      link.addEventListener("click", () => menu.classList.remove("open"));
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+        toggle.classList.remove("active");
+      });
+    });
+
+    // Close when clicking outside menu
+    document.addEventListener("click", (e) => {
+      if (!navbar.contains(e.target) && menu.classList.contains("open")) {
+        menu.classList.remove("open");
+        toggle.classList.remove("active");
+      }
     });
   }
 
   // Active nav link highlight on scroll
   function highlightNavLink() {
     const sections = document.querySelectorAll("section[id]");
-    const links = document.querySelectorAll(".nav-link");
+    const links = document.querySelectorAll(".nav-link:not(.nav-cta)");
     let current = "";
 
+    const scrollPosition = window.scrollY + 160;
+
     sections.forEach((sec) => {
-      if (window.scrollY >= sec.offsetTop - 120) {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
         current = sec.getAttribute("id");
       }
     });
@@ -175,6 +208,7 @@ function initHeroAnimations() {
 /* ============ SCROLL REVEAL (AOS-like) ============ */
 (function initScrollReveal() {
   const elements = document.querySelectorAll("[data-aos]");
+  if (!elements.length) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -184,7 +218,7 @@ function initHeroAnimations() {
           if (delay) {
             setTimeout(() => {
               entry.target.classList.add("aos-visible");
-            }, parseInt(delay));
+            }, parseInt(delay, 10));
           } else {
             entry.target.classList.add("aos-visible");
           }
@@ -194,7 +228,7 @@ function initHeroAnimations() {
     },
     {
       threshold: 0.08,
-      rootMargin: "0px 0px -60px 0px",
+      rootMargin: "0px 0px -40px 0px",
     }
   );
 
@@ -205,12 +239,18 @@ function initHeroAnimations() {
 (function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
-      const target = document.querySelector(anchor.getAttribute("href"));
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
       if (!target) return;
+      
       e.preventDefault();
-      const offset = 80;
+      const offset = 85;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
       window.scrollTo({
-        top: target.offsetTop - offset,
+        top: offsetPosition,
         behavior: "smooth",
       });
     });
@@ -225,38 +265,48 @@ function initHeroAnimations() {
   ticker.addEventListener("mouseleave", () => ticker.style.animationPlayState = "running");
 })();
 
-sendBtn.addEventListener("click", () => {
-  const name = document.getElementById("formName")?.value.trim();
-  const email = document.getElementById("formEmail")?.value.trim();
-  const subject = document.getElementById("formSubject")?.value.trim();
-  const message = document.getElementById("formMessage")?.value.trim();
+/* ============ WHATSAPP CONTACT FORM ============ */
+(function initContactForm() {
+  const sendBtn = document.getElementById("sendBtn");
+  if (!sendBtn) return;
 
-  if (!name || !email || !subject || !message) {
-    showToast("Please fill in all fields.", "error");
-    return;
-  }
+  sendBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const nameEl = document.getElementById("formName");
+    const emailEl = document.getElementById("formEmail");
+    const subjectEl = document.getElementById("formSubject");
+    const messageEl = document.getElementById("formMessage");
 
-  const phone = "918940786858"; // 🔁 Replace with your number (91 = India code)
+    const name = nameEl ? nameEl.value.trim() : "";
+    const email = emailEl ? emailEl.value.trim() : "";
+    const subject = subjectEl ? subjectEl.value.trim() : "";
+    const message = messageEl ? messageEl.value.trim() : "";
 
-  const text = `Hello Surendhar D,%0A%0A` +
-    `*Name:* ${name}%0A` +
-    `*Email:* ${email}%0A` +
-    `*Subject:* ${subject}%0A%0A` +
-    `*Message:*%0A${message}`;
+    if (!name || !email || !subject || !message) {
+      showToast("Please fill in all fields before sending.", "error");
+      return;
+    }
 
-  window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+    const phone = "918940786858";
 
-  showToast("Opening WhatsApp... ✅", "success");
+    const text = `Hello Surendhar D,%0A%0A` +
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Email:* ${encodeURIComponent(email)}%0A` +
+      `*Subject:* ${encodeURIComponent(subject)}%0A%0A` +
+      `*Message:*%0A${encodeURIComponent(message)}`;
 
-  ["formName", "formEmail", "formSubject", "formMessage"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.value = "";
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+
+    showToast("Opening WhatsApp... ✅", "success");
+
+    [nameEl, emailEl, subjectEl, messageEl].forEach((el) => {
+      if (el) el.value = "";
+    });
   });
-});
+})();
 
 /* ============ TOAST NOTIFICATION ============ */
 function showToast(msg, type = "success") {
-  // Remove existing toast
   const existing = document.querySelector(".toast");
   if (existing) existing.remove();
 
@@ -267,20 +317,24 @@ function showToast(msg, type = "success") {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    z-index: 9999;
-    padding: 1rem 1.8rem;
-    border-radius: 10px;
+    z-index: 100001;
+    padding: 0.9rem 1.6rem;
+    border-radius: 12px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: #fff;
-    background: ${type === "error" ? "#ef4444" : "#10b981"};
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    color: #ffffff;
+    background: ${type === "error" ? "rgba(239, 68, 68, 0.95)" : "rgba(16, 185, 129, 0.95)"};
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid ${type === "error" ? "rgba(239, 68, 68, 0.5)" : "rgba(16, 185, 129, 0.5)"};
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     transform: translateY(20px);
     opacity: 0;
-    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     max-width: 380px;
     line-height: 1.5;
+    pointer-events: none;
   `;
   document.body.appendChild(toast);
 
@@ -296,62 +350,11 @@ function showToast(msg, type = "success") {
   }, 4000);
 }
 
-/* ============ COUNTER ANIMATION ============ */
-(function initCounters() {
-  const counters = [
-    { el: document.querySelector(".pstat-num"), target: 5000, suffix: "+" },
-  ];
-  // counters are handled by CSS design, kept for future use
-})();
-
-/* ============ EXPERTISE CARD TILT ============ */
-(function initCardTilt() {
-  const cards = document.querySelectorAll(".exp-card:not(.featured)");
-
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const rotateX = ((y - cy) / cy) * -5;
-      const rotateY = ((x - cx) / cx) * 5;
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-      card.style.transition = "transform 0.4s ease";
-    });
-
-    card.addEventListener("mouseenter", () => {
-      card.style.transition = "transform 0.1s ease";
-    });
-  });
-})();
-
-/* ============ PROGRESS BAR ON SCROLL ============ */
-(function initProgressBar() {
-  const bar = document.createElement("div");
-  bar.style.cssText = `
-    position: fixed; top: 0; left: 0; z-index: 2000;
-    height: 3px;
-    background: linear-gradient(90deg, #0047cc, #00b4d8);
-    width: 0%;
-    transition: width 0.1s linear;
-    pointer-events: none;
-  `;
-  document.body.appendChild(bar);
-
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (scrolled / total) * 100 + "%";
-  }, { passive: true });
-})();
 /* ============ HERO CARD 3D TILT ============ */
 (function initHeroCardTilt() {
+  const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!isFinePointer) return;
+
   const card = document.querySelector(".hero-card-wrap");
   if (!card) return;
 
@@ -361,10 +364,10 @@ function showToast(msg, type = "success") {
     const y = e.clientY - rect.top;
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    const rotateX = ((y - cy) / cy) * -12;
-    const rotateY = ((x - cx) / cx) * 12;
+    const rotateX = ((y - cy) / cy) * -8;
+    const rotateY = ((x - cx) / cx) * 8;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
 
   card.addEventListener("mouseleave", () => {
@@ -373,6 +376,20 @@ function showToast(msg, type = "success") {
   });
 
   card.addEventListener("mouseenter", () => {
-    card.style.transition = "transform 0.1s ease";
+    card.style.transition = "transform 0.15s ease";
+  });
+})();
+
+/* ============ EXPERTISE CARD TILT & MOUSE GLOW ============ */
+(function initCardGlow() {
+  const cards = document.querySelectorAll(".exp-card, .skill-category, .timeline-card");
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
   });
 })();
